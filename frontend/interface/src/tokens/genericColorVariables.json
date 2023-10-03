@@ -1,0 +1,14 @@
+{
+    "genericColorVariables": [
+        "body_bg_colr",
+        "pr_btn_bg_colr",
+        "pr_btn_colr",
+        "pr_btn_bdr_clr",
+        "sr_btn_bg_colr",
+        "sr_btn_colr",
+        "sr_btn_bdr_clr",
+        "tr_btn_bg_colr",
+        "tr_btn_colr",
+        "tr_btn_bdr_clr"
+    ]
+}

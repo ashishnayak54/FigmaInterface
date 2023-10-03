@@ -1,0 +1,76 @@
+@import './scss/global.scss';
+
+.App-header {
+  background-color: #282c34;
+  color: white;
+  padding: 5px;
+  text-align: center;
+}
+
+body {
+  background-color: #fff6ea;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+// Headings
+h4 {
+  margin: 16px 0;
+}
+
+// button global styling
+.button, input[type='submit'], input[type='button'] {
+  @include fontsize(14px, 18px);
+  padding: rem(15px, 20px);
+  text-transform: uppercase;
+  letter-spacing: rem(0);
+  border-radius: rem(5px);
+  cursor: pointer;
+  @include set-button(white, black, white);
+
+  &:hover,
+  &:active {
+    @include set-button(black, white, black);
+  }
+}
+
+select {
+  width: 125px;
+  padding: 5px 0;
+  border-radius: 5px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+// Display properties
+.d-flex {
+  display: flex;
+}
+
+.d-block {
+  display: block;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+// Spacing global classes
+.mx-2 {
+  margin: 0 8px;
+}
+.my-2 {
+  margin: 8px 0;
+}
+
+.my-3 {
+  margin: 16px 0;
+}
+
+.mb-2 {
+  margin-bottom: 8px;
+}

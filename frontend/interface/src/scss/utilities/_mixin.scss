@@ -1,0 +1,162 @@
+@mixin set-button($col, $bg-color, $border-color, $important: false) {
+    @if $important {
+      color: $col !important;
+      background-color: $bg-color !important;
+      border: 1px solid $border-color !important;
+    }
+
+    @else {
+      color: $col;
+      background-color: $bg-color;
+      border: 1px solid $border-color;
+    }
+  }
+
+// REM calculation
+$html-font-size: 16px;
+
+/// Remove the unit of a length
+/// @param {Number} $number - Number to remove unit from
+/// @return {Number} - Unitless number
+
+@function strip-unit($number) {
+@if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+}
+@return $number;
+}
+
+@function rem($pxValue...) {
+    $remval: ();
+
+@each $val in $pxValue {
+    $remval:append($remval, #{strip-unit($val) / strip-unit($html-font-size)}rem);
+}
+
+    @return $remval;
+}
+
+// EM calculation
+
+@function em($pixels, $context: $html-font-size) {
+    @return ($pixels / $context) * 1em;
+}
+
+// Mixin that will calculate and output a font-size/line-height pair
+
+@mixin fontsize($size, $lineheight) {
+    font-size: rem($size);
+    line-height: em($lineheight, $size);
+}
+
+/* Mixin for inputField */
+
+@mixin formInputField {
+    width: 100%;
+    color: $black;
+    padding: rem(15px, 16px);
+    box-shadow: none;
+    height: rem(58px);
+    font-family: $font-family-GothamBook;
+    border: rem(1.5px) solid $black;
+    border-radius: rem(0px);
+    background-clip: initial;
+
+    @include fontsize(14px, 24px);
+
+    &::placeholder {
+        color: $black;
+    }
+
+    &[type="text"] {
+        -webkit-appearance: none;
+    }
+
+    &[type="search"] {
+        -webkit-appearance: none;
+    }
+
+    &[type="number"] {
+        -moz-appearance: textfield;
+    }
+
+    &:focus,
+    &:hover {
+        outline: none;
+        box-shadow: none;
+    }
+
+    &:disabled {
+        border-color: $input-disabled-col;
+        color: $input-disabled-col;
+        background-color: $white;
+    }
+}
+
+/* common mixin for checkbox and radio button */
+
+@mixin checkboxRadioBtn {
+    display: none;
+
+    + label {
+      cursor: pointer;
+      position: relative;
+      padding-left: rem(30px);
+      @include fontsize(14px, 24px);
+      font-family: $font-family-GothamBook;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: rem(2px);
+        width: rem(20px);
+        height: rem(20px);
+        border: 1.5px solid $black;
+      }
+    }
+
+    &:hover:not(:checked, :disabled) + label {
+        &::before {
+          background-color: $white-smoke;
+        }
+    }
+
+    &:focus + label {
+        outline: 1px solid $dove-gray;
+    }
+
+    &:disabled + label {
+        &,
+        &::before {
+            cursor: default;
+        }
+        &::before {
+            background-color: $mercury;
+            border-color: $input-pr-bdr-col;
+        }
+    }
+}
+
+@mixin transition($args...) {
+    -webkit-transition: $args;
+    -moz-transition: $args;
+    -ms-transition: $args;
+    transition: $args;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@mixin visually-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}

@@ -1,0 +1,112 @@
+
+@import "./utilities/mixin";
+
+.btn-custom {
+    // font-family: $font-family-GothamMedium;
+    @include fontsize(14px, 18px);
+    padding: rem(10px, 20px);
+    text-transform: uppercase;
+    letter-spacing: rem(0.5);
+    border-radius: rem(5px);
+}
+
+.btn-primary {
+    @include set-button($pr_btn_colr, $pr_btn_bg_colr, $pr_btn_bdr_clr);
+
+    &:not(:disabled),
+    &:not(:disabled):not(:disabled) {
+        &:hover,
+        &:active {
+        @include set-button($tr_btn_colr, $tr_btn_bg_colr, $tr_btn_bdr_clr);
+        }
+    }
+
+    &:disabled,
+    &.disabled {
+        @include set-button($sr_btn_colr, $sr_btn_bg_colr, $sr_btn_bdr_clr);
+        opacity: 0.35;
+    }
+}
+
+.btn-secondary {
+    @include set-button($sr_btn_colr, $sr_btn_bg_colr, $sr_btn_bdr_clr);
+  
+    &:not(:disabled),
+    &:not(:disabled):not(:disabled) {
+      &:hover,
+      &:active {
+        @include set-button($tr_btn_colr, $tr_btn_bg_colr, $tr_btn_bdr_clr);
+      }
+    }
+  
+    &:disabled,
+    &.disabled {
+      @include set-button($pr_btn_colr, $pr_btn_bg_colr, $pr_btn_bdr_clr);
+      opacity: 0.35;
+    }
+}
+
+.link-primary {
+    display: inline-block;
+    // font-family: $font-family-GothamMedium;
+    color: $pr_btn_colr;
+    text-decoration: none;
+    border-bottom: 1px solid $pr_btn_bdr_clr;
+    padding-bottom: rem(5px);
+    @include fontsize(14px, 24px);
+
+    &:hover {
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+    }
+}
+
+.link-secondary {
+    @include fontsize(14px, 24px);
+    // font-family: $font-family-GothamMedium;
+    color: $sr_btn_colr;
+    text-transform: capitalize;
+    text-decoration: underline;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.link-tertiary {
+    @include fontsize(14px, 24px);
+    // font-family: $font-family-GothamLight;
+    color: $tr_btn_colr;
+    text-transform: capitalize;
+    text-decoration: underline;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.link-inline {
+    @include fontsize(12px, 18px);
+    // font-family: $font-family-GothamMedium;
+    color: $pr_btn_colr;
+    text-decoration: underline;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.link-pd-banner {
+    display: inline-block;
+    // font-family: $font-family-GothamMedium;
+    color: $pr_btn_colr;
+    text-decoration: none;
+    border-bottom: 1px solid $pr_btn_bdr_clr;
+    padding-bottom: rem(5px);
+    @include fontsize(16px, 24px);
+
+    &:hover {
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+    }
+}

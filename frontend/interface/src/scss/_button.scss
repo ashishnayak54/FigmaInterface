@@ -1,0 +1,20 @@
+// Custom Button Component
+
+@import "./utilities/mixin";
+
+// Custom Button Component Styles
+.btn {
+  // font-family: $font-family-GothamMedium;
+  cursor: pointer;
+
+  &:disabled,
+  &.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.3;
+  }
+
+  &:focus {
+    box-shadow: none;
+  }
+}
