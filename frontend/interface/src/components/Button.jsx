@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import GlobalVariables from '../json/variables.json';
 import PreviewButton from './PreviewButton';
+import {textTransformOptions, displayOptions, textDecorationOptions, borderStyleOptions} from './utils';
 
 export default function Button() {
     const [buttonStyles, setButtonStyles] = useState({});
@@ -16,60 +17,6 @@ export default function Button() {
     const mappedGlobalVariables = Object.entries(GlobalVariables).map(variable => {
         return <option key={variable[0]} value={'$' + variable[0].toLowerCase()}>{variable[0]}</option>
     });
-
-    const textTransformOptions = () => {
-        return (
-            <>
-                <option value=''>Select</option>
-                <option value="uppercase">uppercase</option>
-                <option value="capitalize">capitalize</option>
-                <option value="lowercase">lowercase</option>
-            </>
-        )
-    }
-
-    const displayOptions = () => {
-        return (
-            <>
-                <option value=''>Select</option>
-                <option value="block">block</option>
-                <option value="none">none</option>
-                <option value="flex">flex</option>
-                <option value="inline-block">inline-block</option>
-                <option value="inline">inline</option>
-                <option value="grid">grid</option>
-            </>
-        )
-    }
-
-    const textDecorationOptions = () => {
-        return (
-            <>
-                <option value=''>Select</option>
-                <option value="none">none</option>
-                <option value="underline">underline</option>
-                <option value="overline">overline</option>
-                <option value="line-through">line-through</option>
-                <option value="blink">blink</option>
-            </>
-        )
-    }
-
-    const borderStyleOptions = () => {
-        return (
-            <>
-                <option value=''>Select</option>
-                <option value="none">none</option>
-                <option value="hidden">hidden</option>
-                <option value="solid">solid</option>
-                <option value="dotted">dotted</option>
-                <option value="dashed">dashed</option>
-                <option value="double">double</option>
-                <option value="groove">groove</option>
-                <option value="ridge">ridge</option>
-            </>
-        )
-    }
 
     // create scss template based on submit
     let createTemplate = (styles) => {
@@ -223,9 +170,9 @@ export default function Button() {
     };
 
   return (
-    <>
-        <h3>Buttons</h3>
-        <div className='d-flex my-3 button-component'>
+    <div className='button-component'>
+        <h3>Buttons & Links</h3>
+        <div className='d-flex my-3'>
             <form onSubmit={handleSubmit} className='form'>
                 <div className='btn-section'>
                     <h4 className=''>
@@ -659,6 +606,6 @@ export default function Button() {
                 {previewButton && <PreviewButton />}
             </div>
         </div>
-    </>
+    </div>
   )
 }

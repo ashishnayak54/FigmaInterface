@@ -1,10 +1,8 @@
-import React, { useState } from 'react'
-import Button from './Button'
+import React from 'react'
 import GenericColorVariables from '../tokens/genericColorVariables.json'
 
-export default function Variables(props) {
-    let [btnComponent, showBtnComponent] = useState(true);
-    let colorProp = props.color;
+export default function Variables({color, sendDataToParent}) {
+    let colorProp = color;
     let mappedColors;
     if (colorProp) {
         let color = colorProp;
@@ -37,7 +35,7 @@ export default function Variables(props) {
         xmlhttp.setRequestHeader("Content-Type", "application/json");
         xmlhttp.send(JSON.stringify( data ));
 
-        showBtnComponent(true);
+        sendDataToParent(true);
     }
   return (
     <>
@@ -55,7 +53,6 @@ export default function Variables(props) {
             })}
             <input type="submit" value="Submit" />
         </form>
-        {btnComponent && <Button />}
     </>
   )
 }

@@ -43,6 +43,12 @@ app.post('/btn', bodyParser.text(), (req, res) => {
     fs.writeFileSync('../frontend/interface/src/scss/_button-custom.scss', req.body);
 })
 
+app.post('/inputscss', bodyParser.text(), (req, res) => {
+    // req.body holds the object which is sent from front end
+    // fs.writeFileSync is used to override the file
+    fs.writeFileSync('../frontend/interface/src/scss/_form.scss', req.body);
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
