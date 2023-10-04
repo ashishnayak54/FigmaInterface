@@ -14,25 +14,26 @@ export default function Input() {
     const createTemplate = (styles) => {
 
         let {
-            inputBorderWidth, inputBorderStyle, inputBorderColor
+            inputBorderWidth, inputBorderStyle, inputBorderColor,
+            padding, color, fontSize, lineHeight, margin, boxShadowType, 
+            boxShadowXoffset, boxShadowYoffset, boxShadowBlur, boxShadowSpread, boxShadowColor
         } = styles;
 
-        let data = `@import "./utilities/mixin"
+        let data = `@import "./utilities/mixin";
 
 input[type=text] {
     border: ${inputBorderWidth} ${inputBorderStyle} ${inputBorderColor};
-    padding-left: 5px;
-    padding-right: 5px;
-    color: #627686;
-    font-size: 13px;
-    box-shadow: inset 0 4px 5px 0 #ebebeb;
-    margin: 0;
+    padding: ${padding};
+    color: ${color};
+    box-shadow: ${boxShadowType} ${boxShadowXoffset} ${boxShadowYoffset} ${boxShadowBlur} ${boxShadowSpread} ${boxShadowColor};
+    margin: ${margin};
+    @include fontsize(${fontSize}, ${lineHeight});
 }`
         console.log(data);
-        // var xmlhttp = new XMLHttpRequest(); // new HttpRequest instance
-        // xmlhttp.open("POST", "http://localhost:6001/inputscss");
-        // xmlhttp.setRequestHeader("Content-Type", 'text/plain');
-        // xmlhttp.send(data);
+        var xmlhttp = new XMLHttpRequest(); // new HttpRequest instance
+        xmlhttp.open("POST", "http://localhost:6001/inputscss");
+        xmlhttp.setRequestHeader("Content-Type", 'text/plain');
+        xmlhttp.send(data);
     }
 
     const handleSubmit = (e) => {
@@ -44,20 +45,65 @@ input[type=text] {
     <div className='input-component'>
         <h3>Form Elements</h3>
         <form onSubmit={handleSubmit}>
-            <div className='mb-2'>
-                <label htmlFor="inputBorder">Border Bottom</label>
-                <input required type="text" className='mx-2' name='inputBorderWidth' id='inputBorderWidth' placeholder='Border width' onChange={updateStylesOnChange} />
-                <select required className='mx-2' name="inputBorderStyle" id="inputBorderStyle" onChange={updateStylesOnChange}>
-                    {borderStyleOptions()}
-                </select>
-                <select required className='mx-2' name="inputBorderColor" id="inputBorderColor" onChange={updateStylesOnChange}>
-                    <option value=''>Select</option>
-                    {mappedGlobalVariables}
-                    <option value='transparent'>transparent</option>
-                </select>
+            <div className='input-type-text'>
+                <h4>Input[type=text]</h4>
+                <div>
+                    <div className='mb-2'>
+                        <label htmlFor="inputBorder">Border Bottom</label>
+                        <input required type="text" className='mx-2' name='inputBorderWidth' id='inputBorderWidth' placeholder='Border width' onChange={updateStylesOnChange} />
+                        <select required className='mx-2' name="inputBorderStyle" id="inputBorderStyle" onChange={updateStylesOnChange}>
+                            {borderStyleOptions()}
+                        </select>
+                        <select required className='mx-2' name="inputBorderColor" id="inputBorderColor" onChange={updateStylesOnChange}>
+                            <option value=''>Border Color</option>
+                            {mappedGlobalVariables}
+                            <option value='transparent'>transparent</option>
+                        </select>
+                    </div>
+                    <div className='mb-2'>
+                        <label htmlFor="padding">Padding</label>
+                        <input required type="text" className='mx-2' name='padding' id='padding' onChange={updateStylesOnChange} />
+                    </div>
+                    <div className='mb-2'>
+                        <label htmlFor="color">Color</label>
+                        <select required className='mx-2' name="color" id="color" onChange={updateStylesOnChange}>
+                            <option value=''>Select</option>
+                            {mappedGlobalVariables}
+                        </select>
+                    </div>
+                    <div className='mb-2'>
+                        <label htmlFor="fontSize">Font Size</label>
+                        <input required type="text" className='mx-2' name='fontSize' id='fontSize' onChange={updateStylesOnChange} />
+                    </div>
+                    <div className='mb-2'>
+                        <label htmlFor="lineHeight">Line Height</label>
+                        <input required type="text" className='mx-2' name='lineHeight' id='lineHeight' onChange={updateStylesOnChange} />
+                    </div>
+                    <div className='mb-2'>
+                        <label htmlFor="margin">Margin</label>
+                        <input required type="text" className='mx-2' name='margin' id='margin' onChange={updateStylesOnChange} />
+                    </div>
+                    <div className='mb-2'>
+                        <label htmlFor="boxshadow">Box Shadow</label>
+                        <select required className='mx-2' name="boxShadowType" id="boxShadowType" onChange={updateStylesOnChange}>
+                            <option value=''>Select</option>
+                            <option value='inset'>Inset</option>
+                            <option value='outset'>Outset</option>
+                        </select>
+                        <input required type="text" className='mx-2' name='boxShadowXoffset' id='boxShadowXoffset' placeholder='X offset' onChange={updateStylesOnChange} />
+                        <input required type="text" className='mx-2' name='boxShadowYoffset' id='boxShadowYoffset' placeholder='Y offset' onChange={updateStylesOnChange} />
+                        <input required type="text" className='mx-2' name='boxShadowBlur' id='boxShadowBlur' placeholder='Blur' onChange={updateStylesOnChange} />
+                        <input required type="text" className='mx-2' name='boxShadowSpread' id='boxShadowSpread' placeholder='Spread' onChange={updateStylesOnChange} />
+                        <select required className='mx-2' name="boxShadowColor" id="boxShadowColor" onChange={updateStylesOnChange}>
+                            <option value=''>Box Shadow Color</option>
+                            {mappedGlobalVariables}
+                            <option value='transparent'>transparent</option>
+                        </select>
+                    </div>
+                </div>
             </div>
             <div>
-                <input type="button" value="Submit" />
+                <input type="submit" value="Submit" />
             </div>
         </form>
     </div>
