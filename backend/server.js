@@ -35,7 +35,7 @@ app.use(bodyParser.text({ type: 'text/plain' }));
 
 app.post('/variables', (req, res) => {
     // req.body holds the object which is sent from front end
-    // fs.writeFileSync is used to override the file
+    // fs.writeFileSync is used to override the file if already present else it will create new file
     fs.writeFileSync('../frontend/interface/src/json/variables.json', JSON.stringify(req.body));
     runCommand(path, command2);
 })
@@ -58,7 +58,7 @@ app.post('/links', (req, res) => {
         fs.writeFileSync('../frontend/interface/src/json/links.json', JSON.stringify(req.body));
     } else if (req.is('text/plain')) {
         // Handle text data
-        fs.writeFileSync('../frontend/interface/src/scss/links.scss', req.body);
+        fs.writeFileSync('../frontend/interface/src/scss/_links.scss', req.body);
     } else {
         res.status(400).send('Unsupported Content-Type');
     }

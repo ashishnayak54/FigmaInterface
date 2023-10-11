@@ -21,7 +21,6 @@ export default function Buttons() {
         setButtonStyles(buttonJson);
     }, []);
 
-
     // function triggered on input of button properties
     let updateStylesOnChange = (e) => {
         let key = e.target["id"];
