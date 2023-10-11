@@ -16,9 +16,7 @@ const { exec } = require('child_process');
 
 const path = '../backend';
 
-const command1 = "git pull origin main";
-
-const command2 = "style-dictionary build";
+const command = "style-dictionary build";
 
 function runCommand(path, command) {
     exec(command, { cwd: path }, (error, stdout, stderr) => {
@@ -37,7 +35,7 @@ app.post('/variables', (req, res) => {
     // req.body holds the object which is sent from front end
     // fs.writeFileSync is used to override the file if already present else it will create new file
     fs.writeFileSync('../frontend/interface/src/json/variables.json', JSON.stringify(req.body));
-    runCommand(path, command2);
+    runCommand(path, command);
 })
 
 app.post('/button', (req, res) => {
