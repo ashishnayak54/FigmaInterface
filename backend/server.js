@@ -30,23 +30,50 @@ function runCommand(path, command) {
     });
 }
 
-app.post('/abcd',jsonParser, (req, res) => {
+app.use(jsonParser);
+app.use(bodyParser.text({ type: 'text/plain' }));
+
+app.post('/variables', (req, res) => {
     // req.body holds the object which is sent from front end
     // fs.writeFileSync is used to override the file
     fs.writeFileSync('../frontend/interface/src/json/variables.json', JSON.stringify(req.body));
     runCommand(path, command2);
 })
 
-app.post('/btn', bodyParser.text(), (req, res) => {
-    // req.body holds the object which is sent from front end
-    // fs.writeFileSync is used to override the file
-    fs.writeFileSync('../frontend/interface/src/scss/_button-custom.scss', req.body);
+app.post('/button', (req, res) => {
+    if (req.is('application/json')) {
+        // Handle JSON data
+        fs.writeFileSync('../frontend/interface/src/json/button.json', JSON.stringify(req.body));
+    } else if (req.is('text/plain')) {
+        // Handle text data
+        fs.writeFileSync('../frontend/interface/src/scss/_button-custom.scss', req.body);
+    } else {
+        res.status(400).send('Unsupported Content-Type');
+    }
 })
 
-app.post('/inputscss', bodyParser.text(), (req, res) => {
-    // req.body holds the object which is sent from front end
-    // fs.writeFileSync is used to override the file
-    fs.writeFileSync('../frontend/interface/src/scss/_form.scss', req.body);
+app.post('/links', (req, res) => {
+    if (req.is('application/json')) {
+        // Handle JSON data
+        fs.writeFileSync('../frontend/interface/src/json/links.json', JSON.stringify(req.body));
+    } else if (req.is('text/plain')) {
+        // Handle text data
+        fs.writeFileSync('../frontend/interface/src/scss/links.scss', req.body);
+    } else {
+        res.status(400).send('Unsupported Content-Type');
+    }
+})
+
+app.post('/form', (req, res) => {
+    if (req.is('application/json')) {
+        // Handle JSON data
+        fs.writeFileSync('../frontend/interface/src/json/form-elements.json', JSON.stringify(req.body));
+    } else if (req.is('text/plain')) {
+        // Handle text data
+        fs.writeFileSync('../frontend/interface/src/scss/_form.scss', req.body);
+    } else {
+        res.status(400).send('Unsupported Content-Type');
+    }
 })
 
 app.listen(port, () => {

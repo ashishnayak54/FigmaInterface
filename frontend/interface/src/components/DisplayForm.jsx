@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import VariablesForm from "./VariablesForm";
 import figmaJsonData from "../tokens/tokens.json";
 import defaultJsonData from "../tokens/defaultColors.json";
-import Button from "./Button";
-import Input from "./Input";
+import Buttons from "./Buttons";
+import Links from './Links';
+import FormElements from "./FormElements";
 
 export default function DisplayForm() {
   let [jsonData, setJsonData] = useState(null);
@@ -31,8 +32,9 @@ export default function DisplayForm() {
       {
         globalStylesComponent && 
         <>
-          <Button />
-          <Input />
+          <Buttons />
+          <Links />
+          <FormElements />
         </>
       }
     </div>

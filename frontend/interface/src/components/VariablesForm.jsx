@@ -31,7 +31,7 @@ export default function Variables({color, sendDataToParent}) {
           }
         });
         var xmlhttp = new XMLHttpRequest(); // new HttpRequest instance
-        xmlhttp.open("POST", "http://localhost:6001/abcd");
+        xmlhttp.open("POST", "http://localhost:6001/variables");
         xmlhttp.setRequestHeader("Content-Type", "application/json");
         xmlhttp.send(JSON.stringify( data ));
 
