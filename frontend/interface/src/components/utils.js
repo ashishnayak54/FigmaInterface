@@ -7,7 +7,7 @@ export const mappedGlobalVariables = Object.entries(GlobalVariables).map(variabl
 export const textTransformOptions = () => {
     return (
         <>
-            <option value=''>Select</option>
+            <option value='' disabled>Select</option>
             <option value="uppercase">uppercase</option>
             <option value="capitalize">capitalize</option>
             <option value="lowercase">lowercase</option>
@@ -18,7 +18,7 @@ export const textTransformOptions = () => {
 export const displayOptions = () => {
     return (
         <>
-            <option value=''>Select</option>
+            <option value='' disabled>Select</option>
             <option value="block">block</option>
             <option value="none">none</option>
             <option value="flex">flex</option>
@@ -32,7 +32,7 @@ export const displayOptions = () => {
 export const textDecorationOptions = () => {
     return (
         <>
-            <option value=''>Select</option>
+            <option value='' disabled>Select</option>
             <option value="none">none</option>
             <option value="underline">underline</option>
             <option value="overline">overline</option>
@@ -45,7 +45,7 @@ export const textDecorationOptions = () => {
 export const borderStyleOptions = () => {
     return (
         <>
-            <option value=''>Select</option>
+            <option value='' disabled>Border Style</option>
             <option value="none">none</option>
             <option value="hidden">hidden</option>
             <option value="solid">solid</option>
@@ -54,6 +54,23 @@ export const borderStyleOptions = () => {
             <option value="double">double</option>
             <option value="groove">groove</option>
             <option value="ridge">ridge</option>
+        </>
+    )
+}
+
+export const textalignOptions = () => {
+    return (
+        <>
+            <option value='' disabled>Select</option>
+            <option value="center">center</option>
+            <option value="left">left</option>
+            <option value="right">right</option>
+            <option value="start">start</option>
+            <option value="end">end</option>
+            <option value="unset">unset</option>
+            <option value="revert">revert</option>
+            <option value="justify">justify</option>
+            <option value="inherit">inherit</option>
         </>
     )
 }

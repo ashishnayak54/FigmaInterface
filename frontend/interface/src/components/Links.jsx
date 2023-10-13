@@ -119,7 +119,7 @@ export default function Link() {
         border-bottom: ${linkPdBannerHoverBorderWidth} ${linkPdBannerHoverBorderStyle} ${linkPdBannerHoverBorderColor};
     }
 }`
-console.log('createTemplate function');
+
         fetch(
             'http://localhost:6001/links',
             {
@@ -144,7 +144,6 @@ console.log('createTemplate function');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('handleSubmit function');
         createTemplate(linkStyles);
     }
 
